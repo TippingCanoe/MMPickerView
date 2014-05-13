@@ -16,22 +16,23 @@ extern NSString * const MMfont;
 extern NSString * const MMvalueY;
 extern NSString * const MMselectedObject;
 extern NSString * const MMtoolbarBackgroundImage;
-extern NSString * const MMtextAlignment;
-extern NSString * const MMshowsSelectionIndicator;
 
-@interface MMPickerView: UIView 
+@interface MMPickerView: UIView
 
-+(void)showPickerViewInView: (UIView *)view
-                withStrings: (NSArray *)strings
-                withOptions: (NSDictionary *)options
-                 completion: (void(^)(NSString *selectedString))completion;
++ (void)showPickerViewInView: (UIView *)view
+                 withStrings: (NSArray *)strings
+                 withOptions: (NSDictionary *)options
+                   selection: (void(^)(id selectedObject))selection
+                  completion: (void(^)(id selectedObject))completion
+                cancellation: (void(^)(id lastSelectedObject))cancellation;
 
-+(void)showPickerViewInView: (UIView *)view
-                withObjects: (NSArray *)objects
-                withOptions: (NSDictionary *)options
-    objectToStringConverter: (NSString *(^)(id object))converter
-       completion: (void(^)(id selectedObject))completion;
++ (void)showPickerViewInView: (UIView *)view
+                 withObjects: (NSArray *)objects
+                 withOptions: (NSDictionary *)options
+     objectToStringConverter: (NSString *(^)(id object))converter
+                   selection: (void(^)(id selectedObject))selection
+                  completion: (void(^)(id selectedObject))completion
+                cancellation: (void(^)(id lastSelectedObject))cancellation;
 
-+(void)dismissWithCompletion: (void(^)(NSString *))completion;
 
 @end
